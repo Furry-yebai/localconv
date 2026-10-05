@@ -1,0 +1,927 @@
+/* ============================================================
+   LocalConv design tokens — Minimal Single Column + dual theme
+   Light is :root, dark is [data-theme='dark'] (set in index.html
+   before first paint, kept in sync by App.tsx).
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --inset: #eef2f8;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.08);
+  --on-accent: #ffffff;
+  --cta: #22c55e;
+  --on-cta: #052e16;
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.07);
+  --danger-border: rgba(220, 38, 38, 0.38);
+  --success: #15803d;
+  --warning: #b45309;
+  --ring: #2563eb;
+  --log-text: #334155;
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 24px -16px rgba(15, 23, 42, 0.18);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b1120;
+  --panel: #111a2e;
+  --inset: #0d1526;
+  --border: rgba(148, 163, 184, 0.16);
+  --border-strong: rgba(148, 163, 184, 0.32);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #60a5fa;
+  --accent-soft: rgba(96, 165, 250, 0.12);
+  --on-accent: #0b1120;
+  --cta: #22c55e;
+  --on-cta: #052e16;
+  --danger: #f87171;
+  --danger-soft: rgba(248, 113, 113, 0.1);
+  --danger-border: rgba(248, 113, 113, 0.4);
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --ring: #60a5fa;
+  --log-text: #94a3b8;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -18px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    'Inter Variable',
+    Inter,
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    'PingFang SC',
+    'Microsoft YaHei',
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+/* ---------- layout ---------- */
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 34px 20px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  margin-top: 26px;
+  flex: 1;
+}
+
+/* ---------- header ---------- */
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+.brand-mark {
+  color: var(--cta);
+  flex-shrink: 0;
+}
+
+.brand-name {
+  white-space: nowrap;
+}
+
+.brand .muted {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 14.5px;
+  margin: 10px 0 0;
+}
+
+.warning {
+  background: var(--danger-soft);
+  border: 1px solid var(--danger-border);
+  color: var(--danger);
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-top: 14px;
+}
+
+.header-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.header-links button {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 7px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 999px;
+}
+
+.header-links button:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.header-links button.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.header-links button.icon-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  justify-content: center;
+}
+
+/* ---------- buttons ---------- */
+
+button {
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  background: var(--inset);
+}
+
+button:active:not(:disabled) {
+  filter: brightness(0.97);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+button.btn-primary {
+  background: var(--cta);
+  border-color: transparent;
+  color: var(--on-cta);
+  font-weight: 600;
+}
+
+button.btn-primary:hover:not(:disabled) {
+  background: var(--cta);
+  border-color: transparent;
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+}
+
+button.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+button.ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+  padding: 6px 12px;
+  font-size: 12.5px;
+}
+
+button.ghost:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: transparent;
+}
+
+button.icon-ghost {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 8px;
+}
+
+/* ---------- tabs (segmented) ---------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--inset);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 18px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.tab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  padding: 8px 24px;
+  font-size: 14.5px;
+  font-weight: 550;
+  border-radius: 9px;
+}
+
+.tab:hover:not(:disabled) {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--panel);
+  color: var(--text);
+  border-color: var(--border);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+}
+
+.badge-dev {
+  margin-left: 8px;
+  font-size: 11px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-weight: 600;
+}
+
+/* ---------- settings ---------- */
+
+.settings {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.setting select {
+  font-family: inherit;
+  background: var(--inset);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.setting select:hover {
+  border-color: var(--border-strong);
+}
+
+.setting-hint {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.mode-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin: -6px 0 14px;
+}
+
+/* ---------- dropzone ---------- */
+
+.dropzone {
+  border: 2px dashed var(--border-strong);
+  border-radius: 14px;
+  padding: 42px 20px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--panel);
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.dropzone:hover,
+.dropzone.dragover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.dropzone-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease;
+}
+
+.dropzone:hover .dropzone-icon,
+.dropzone.dragover .dropzone-icon {
+  transform: translateY(-3px);
+}
+
+.dropzone-text {
+  font-size: 15.5px;
+  font-weight: 550;
+}
+
+.dropzone-hint {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.coming-soon {
+  background: var(--panel);
+  border: 1px dashed var(--border-strong);
+  border-radius: 14px;
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+/* ---------- progress ---------- */
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.progress {
+  position: relative;
+  flex: 1;
+  height: 10px;
+  background: var(--inset);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--cta));
+  border-radius: inherit;
+  transition: width 0.2s ease;
+}
+
+.progress-bar.indeterminate {
+  width: 40% !important;
+  animation: indeterminate 1.2s ease-in-out infinite;
+}
+
+@keyframes indeterminate {
+  0% {
+    margin-left: -40%;
+  }
+  100% {
+    margin-left: 100%;
+  }
+}
+
+.progress-pct {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+  min-width: 38px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- tasks ---------- */
+
+.tasklist {
+  margin-top: 26px;
+}
+
+.tasklist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.tasklist-header h3 {
+  font-size: 13.5px;
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.tasklist-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 15px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s ease;
+}
+
+.task-card:hover {
+  border-color: var(--border-strong);
+}
+
+.task-card.task-error {
+  border-color: var(--danger-border);
+}
+
+.task-icon {
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.task-card.task-running .task-icon {
+  color: var(--accent);
+}
+
+.task-card.task-done .task-icon {
+  color: var(--success);
+}
+
+.task-card.task-error .task-icon {
+  color: var(--danger);
+}
+
+.spin {
+  display: inline-flex;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-name {
+  font-size: 14px;
+  font-weight: 550;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-meta {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-error-msg {
+  color: var(--danger);
+}
+
+.task-warning-msg {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--warning);
+}
+
+.task-progress {
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ---------- spike / diagnostics ---------- */
+
+.spike h2 {
+  font-size: 17px;
+  margin: 0 0 8px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+.spike-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.log {
+  background: var(--inset);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 15px;
+  font-family:
+    'Cascadia Mono',
+    Consolas,
+    'SFMono-Regular',
+    ui-monospace,
+    monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  min-height: 160px;
+  max-height: 380px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--log-text);
+}
+
+.log-line.log-ok {
+  color: var(--success);
+}
+
+.log-line.log-err {
+  color: var(--danger);
+}
+
+.log-line.log-info {
+  color: var(--log-text);
+}
+
+/* ---------- about ---------- */
+
+.about {
+  max-width: 68ch;
+}
+
+.about h2 {
+  font-size: 16.5px;
+  margin: 26px 0 8px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.about h2:first-child {
+  margin-top: 0;
+}
+
+.about p,
+.about li {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.about strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.about ul {
+  margin: 6px 0;
+  padding-left: 1.3em;
+}
+
+.about li {
+  margin: 5px 0;
+}
+
+.about a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* ---------- footer ---------- */
+
+.app-footer {
+  margin-top: 44px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-projects {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.footer-projects a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.footer-projects a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.footer-copy {
+  font-size: 12.5px;
+}
+
+/* ---------- animations ---------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes icon-swap {
+  from {
+    opacity: 0;
+    transform: rotate(-50deg) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* entrance: header/footer play once on load, view blocks replay on
+   every view switch because <main> is keyed by the current view */
+.app-header {
+  animation: fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.app-footer {
+  animation: fade-up 0.4s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.tabs {
+  animation: fade-up 0.4s 0.04s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.settings {
+  animation: fade-up 0.4s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.mode-hint {
+  animation: fade-up 0.4s 0.13s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.dropzone,
+.coming-soon {
+  animation: fade-up 0.4s 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.about,
+.spike {
+  animation: fade-up 0.4s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* task cards: stagger on first appearance (children 2..5 after the header) */
+.task-card {
+  animation: fade-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.task-card:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.task-card:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.task-card:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+.task-card:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+/* status micro-interactions: replay when the status class changes */
+.task-card.task-done .task-icon {
+  animation: pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.task-card.task-error .task-icon {
+  animation: shake 0.4s ease both;
+}
+
+/* idle hint on the dropzone icon */
+.dropzone-icon svg {
+  animation: float 2.8s ease-in-out infinite;
+}
+
+/* theme toggle icon swap (React key forces a fresh node) */
+.theme-icon {
+  display: inline-flex;
+  animation: icon-swap 0.3s ease both;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 640px) {
+  .app {
+    padding: 20px 14px 32px;
+  }
+
+  .brand {
+    font-size: 20px;
+  }
+
+  .tabs {
+    width: 100%;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 9px 8px;
+  }
+
+  .settings {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .dropzone {
+    padding: 32px 16px;
+  }
+
+  .header-links button:not(.icon-btn) {
+    padding: 7px 11px;
+    font-size: 13px;
+  }
+}
+
+/* ---------- accessibility: reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
