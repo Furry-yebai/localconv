@@ -35,9 +35,7 @@ npm run test:e2e     # 构建 + Playwright E2E（18 个用例）
 
 `scripts/prepare-engines.mjs` 会从 npm 包（`@ffmpeg/core`、`@matbee/libreoffice-converter`）生成引擎产物：gzip 压缩后按 Cloudflare Pages 单文件 25 MiB 上限切分，运行时由 `src/engines/chunkLoader.ts` 重新组装。`public/engines` 属于生成物，已在 `.gitignore` 中忽略。
 
-## 部署到 Cloudflare Pages（不关联 GitHub）
-
-本仓库与 Cloudflare Pages **相互独立**，无需连接 GitHub 仓库，直接上传构建产物即可：
+## 部署到 Cloudflare Pages
 
 1. 本地构建：`npm run build`
 2. 二选一上传 `dist/`：

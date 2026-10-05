@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Moon, ShieldCheck, Sun } from '@phosphor-icons/react'
 import DropZone from './components/DropZone'
+import UnlockTip from './components/UnlockTip'
 import TaskList from './components/TaskList'
 import AudioPanel, { type AudioOptions } from './features/audio/AudioPanel'
 import DocPanel from './features/docs/DocPanel'
@@ -96,6 +97,8 @@ function ConvertView({
             {meta.label}转换正在开发中——引擎已完成验证（ffmpeg.wasm / LibreOffice WASM），即将上线。
           </div>
         )}
+
+        {moduleTab === 'audio' && <UnlockTip />}
 
         <TaskList />
       </div>

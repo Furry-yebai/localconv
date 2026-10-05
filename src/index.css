@@ -438,6 +438,87 @@ button.icon-ghost {
   font-size: 14.5px;
 }
 
+/* ---------- unlock tip (audio promo card) ---------- */
+
+.unlock-tip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background:
+    linear-gradient(120deg, var(--accent-soft), transparent 55%),
+    var(--panel);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.unlock-tip:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.unlock-tip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.unlock-tip-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.unlock-tip-title {
+  font-size: 14.5px;
+  font-weight: 650;
+  color: var(--text);
+}
+
+.unlock-tip-text {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.unlock-tip-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.unlock-tip:hover .unlock-tip-cta {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
 /* ---------- progress ---------- */
 
 .progress-row {
@@ -833,6 +914,10 @@ button.icon-ghost {
   animation: fade-up 0.4s 0.16s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.unlock-tip {
+  animation: fade-up 0.4s 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .about,
 .spike {
   animation: fade-up 0.4s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -906,6 +991,15 @@ button.icon-ghost {
 
   .dropzone {
     padding: 32px 16px;
+  }
+
+  .unlock-tip {
+    flex-wrap: wrap;
+  }
+
+  .unlock-tip-cta {
+    margin-left: 58px;
+    width: fit-content;
   }
 
   .header-links button:not(.icon-btn) {
